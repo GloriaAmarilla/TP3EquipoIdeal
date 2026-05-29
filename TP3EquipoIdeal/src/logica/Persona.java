@@ -21,8 +21,12 @@ public class Persona {
 	}
 	
 	private boolean rolValido(String rol) {
-		// debe ser “l´ıder de proyecto”, “arquitecto”, “programador” o “tester”
-		return false;
+		if("LIDER"!=rol.toUpperCase() || "ARQUITECTO"!=rol.toUpperCase()
+			|| "PROGRAMADOR"!=rol.toUpperCase() || "TESTER"!=rol.toUpperCase()) {
+			return false;
+		}
+		
+		return true;
 	}
 
 	private boolean calificacionValida(int calificacion) {
