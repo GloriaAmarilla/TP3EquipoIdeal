@@ -21,12 +21,14 @@ public class Persona {
 	}
 	
 	private boolean rolValido(String rol) {
-		if("LIDER"!=rol.toUpperCase() || "ARQUITECTO"!=rol.toUpperCase()
-			|| "PROGRAMADOR"!=rol.toUpperCase() || "TESTER"!=rol.toUpperCase()) {
-			return false;
+		String rolMayusculas = rol.toUpperCase();
+		
+		if("LIDER".equals(rolMayusculas) || "ARQUITECTO".equals(rolMayusculas)
+			|| "PROGRAMADOR".equals(rolMayusculas) || "TESTER".equals(rolMayusculas)) {
+			return true;
 		}
 		
-		return true;
+		return false;
 	}
 
 	private boolean calificacionValida(int calificacion) {
