@@ -7,37 +7,25 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+
+import logica.EquipoIdeal;
+
 import javax.swing.JTextField;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class IngresoDePersonal {
 
-	private JFrame frmIngresodepersonal;
-	private JTextField nombre;
-	private JTextField apellido;
-	private JTextField rol;
-	private JTextField textField;
+	private JFrame frmIngresoDePersonal;
+	private JTextField txtNombre;
+	private JTextField txtApellido;
+	private EquipoIdeal estructuraDeEquipo;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					IngresoDePersonal window = new IngresoDePersonal();
-					window.frmIngresodepersonal.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
-	public IngresoDePersonal() {
+	public IngresoDePersonal(EquipoIdeal estructuraEquipo) {
+		estructuraDeEquipo = estructuraEquipo;
 		initialize();
 	}
 
@@ -45,88 +33,104 @@ public class IngresoDePersonal {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmIngresodepersonal = new JFrame();
-		frmIngresodepersonal.setTitle("IngresoDePersonal");
-		frmIngresodepersonal.getContentPane().setBackground(new Color(224, 255, 255));
-		frmIngresodepersonal.setBounds(100, 100, 596, 741);
-		frmIngresodepersonal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmIngresodepersonal.getContentPane().setLayout(null);
+		frmIngresoDePersonal = new JFrame();
+		frmIngresoDePersonal.setTitle("IngresoDePersonal");
+		frmIngresoDePersonal.getContentPane().setBackground(new Color(224, 255, 255));
+		frmIngresoDePersonal.setBounds(100, 100, 596, 490);
+		frmIngresoDePersonal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmIngresoDePersonal.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Ingreso de Personas");
 		lblNewLabel.setForeground(new Color(0, 0, 139));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 41));
-		lblNewLabel.setBounds(55, 39, 446, 111);
-		frmIngresodepersonal.getContentPane().add(lblNewLabel);
+		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 36));
+		lblNewLabel.setBounds(55, 11, 446, 66);
+		frmIngresoDePersonal.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
 		lblNombre.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNombre.setForeground(new Color(0, 0, 139));
 		lblNombre.setFont(new Font("Arial", Font.BOLD, 25));
-		lblNombre.setBounds(55, 172, 156, 44);
-		frmIngresodepersonal.getContentPane().add(lblNombre);
+		lblNombre.setBounds(53, 88, 156, 44);
+		frmIngresoDePersonal.getContentPane().add(lblNombre);
 		
-		nombre = new JTextField();
-		nombre.setFont(new Font("Calibri", Font.PLAIN, 20));
-		nombre.setBounds(218, 178, 293, 38);
-		frmIngresodepersonal.getContentPane().add(nombre);
-		nombre.setColumns(10);
+		txtNombre = new JTextField();
+		txtNombre.setFont(new Font("Calibri", Font.PLAIN, 20));
+		txtNombre.setBounds(218, 88, 293, 38);
+		frmIngresoDePersonal.getContentPane().add(txtNombre);
+		txtNombre.setColumns(10);
 		
 		JLabel lblApellido = new JLabel("Apellido:");
 		lblApellido.setHorizontalAlignment(SwingConstants.LEFT);
 		lblApellido.setForeground(new Color(0, 0, 139));
 		lblApellido.setFont(new Font("Arial", Font.BOLD, 25));
-		lblApellido.setBounds(55, 237, 158, 44);
-		frmIngresodepersonal.getContentPane().add(lblApellido);
+		lblApellido.setBounds(51, 131, 158, 44);
+		frmIngresoDePersonal.getContentPane().add(lblApellido);
 		
-		apellido = new JTextField();
-		apellido.setFont(new Font("Calibri", Font.PLAIN, 20));
-		apellido.setColumns(10);
-		apellido.setBounds(218, 246, 293, 38);
-		frmIngresodepersonal.getContentPane().add(apellido);
+		txtApellido = new JTextField();
+		txtApellido.setFont(new Font("Calibri", Font.PLAIN, 20));
+		txtApellido.setColumns(10);
+		txtApellido.setBounds(218, 137, 293, 38);
+		frmIngresoDePersonal.getContentPane().add(txtApellido);
 		
 		JLabel lblRolEnEl = new JLabel("Rol:");
 		lblRolEnEl.setHorizontalAlignment(SwingConstants.LEFT);
 		lblRolEnEl.setForeground(new Color(0, 0, 139));
 		lblRolEnEl.setFont(new Font("Arial", Font.BOLD, 25));
-		lblRolEnEl.setBounds(53, 307, 158, 44);
-		frmIngresodepersonal.getContentPane().add(lblRolEnEl);
+		lblRolEnEl.setBounds(51, 186, 158, 38);
+		frmIngresoDePersonal.getContentPane().add(lblRolEnEl);
 		
-		rol = new JTextField();
-		rol.setFont(new Font("Calibri", Font.PLAIN, 20));
-		rol.setColumns(10);
-		rol.setBounds(218, 316, 293, 38);
-		frmIngresodepersonal.getContentPane().add(rol);
+		JLabel lblCalificacion = new JLabel("Calificación:");
+		lblCalificacion.setHorizontalAlignment(SwingConstants.LEFT);
+		lblCalificacion.setForeground(new Color(0, 0, 139));
+		lblCalificacion.setFont(new Font("Arial", Font.BOLD, 25));
+		lblCalificacion.setBounds(51, 228, 158, 44);
+		frmIngresoDePersonal.getContentPane().add(lblCalificacion);
 		
-		JLabel lblCalificacin = new JLabel("Calificación:");
-		lblCalificacin.setHorizontalAlignment(SwingConstants.LEFT);
-		lblCalificacin.setForeground(new Color(0, 0, 139));
-		lblCalificacin.setFont(new Font("Arial", Font.BOLD, 25));
-		lblCalificacin.setBounds(53, 369, 158, 44);
-		frmIngresodepersonal.getContentPane().add(lblCalificacin);
+		JComboBox cmbxRoles = new JComboBox();
+		cmbxRoles.setFont(new Font("Calibri", Font.PLAIN, 16));
+		cmbxRoles.setBounds(218, 186, 293, 35);
+		frmIngresoDePersonal.getContentPane().add(cmbxRoles);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Calibri", Font.PLAIN, 20));
-		textField.setColumns(10);
-		textField.setBounds(218, 375, 293, 38);
-		frmIngresodepersonal.getContentPane().add(textField);
+		cmbxRoles.setModel(new DefaultComboBoxModel(new String [] {"Seleccione un rol", "LIDER", "ARQUITECTO","PROGRAMADOR","TESTER"}));
+		
+		JComboBox cmbxCalificaciones = new JComboBox();
+		cmbxCalificaciones.setFont(new Font("Calibri", Font.PLAIN, 16));
+		cmbxCalificaciones.setBounds(218, 228, 293, 35);
+		frmIngresoDePersonal.getContentPane().add(cmbxCalificaciones);
+		
+		cmbxCalificaciones.setModel(new DefaultComboBoxModel(new String [] {"Seleccione la calificacion","5","4","3","2","1"}));
 		
 		JButton btnIngresarPersona = new JButton("Ingresar Candidato");
+		btnIngresarPersona.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+//				aca se deben ir cargando las personas en la clase PersonalLaboral
+			}
+		});
 		btnIngresarPersona.setFont(new Font("Arial", Font.PLAIN, 20));
-		btnIngresarPersona.setBounds(155, 449, 219, 56);
-		frmIngresodepersonal.getContentPane().add(btnIngresarPersona);
-		
-		JButton btnFormarEquipo = new JButton("Formar Equipo");
-		btnFormarEquipo.setFont(new Font("Arial", Font.PLAIN, 20));
-		btnFormarEquipo.setBounds(155, 612, 219, 56);
-		frmIngresodepersonal.getContentPane().add(btnFormarEquipo);
+		btnIngresarPersona.setBounds(155, 283, 219, 44);
+		frmIngresoDePersonal.getContentPane().add(btnIngresarPersona);
 		
 		JLabel lblSiYaIngresaste = new JLabel("Si ya ingresaste a todas las personas disponibles:");
 		lblSiYaIngresaste.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSiYaIngresaste.setForeground(new Color(0, 0, 139));
 		lblSiYaIngresaste.setFont(new Font("Arial", Font.BOLD, 23));
-		lblSiYaIngresaste.setBounds(10, 546, 560, 44);
-		frmIngresodepersonal.getContentPane().add(lblSiYaIngresaste);
+		lblSiYaIngresaste.setBounds(10, 341, 560, 44);
+		frmIngresoDePersonal.getContentPane().add(lblSiYaIngresaste);
+		
+		JButton btnFormarEquipo = new JButton("Formar Equipo");
+		btnFormarEquipo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//aca se forma el equipo y se muestra el frame EquipoFormado
+			}
+		});
+		btnFormarEquipo.setFont(new Font("Arial", Font.PLAIN, 20));
+		btnFormarEquipo.setBounds(155, 384, 219, 44);
+		frmIngresoDePersonal.getContentPane().add(btnFormarEquipo);
+		
 	}
 
+	public void mostrarVentana() {
+		frmIngresoDePersonal.setVisible(true);
+	}
 }

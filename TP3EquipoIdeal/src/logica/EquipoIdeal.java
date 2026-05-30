@@ -17,7 +17,8 @@ public class EquipoIdeal {
 	private PersonalLaboral _personal;
 	
 	
-	public EquipoIdeal (int cantIntegrantes, int cantLideres, int cantArquitectos, int cantProgramadores, int cantTesteres) {
+	public EquipoIdeal (int cantIntegrantes, int cantLideres, int cantArquitectos, 
+			int cantProgramadores, int cantTesteres) {
 		
 		_integrantes = new HashSet <Persona>();
 		_integrantes_a_Evaluar = new HashSet <Persona>();
