@@ -4,7 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-public class Principal {
+public class EquipoFormado {
 
 	private JFrame frame;
 
@@ -15,7 +15,7 @@ public class Principal {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Principal window = new Principal();
+					EquipoFormado window = new EquipoFormado();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -27,7 +27,7 @@ public class Principal {
 	/**
 	 * Create the application.
 	 */
-	public Principal() {
+	public EquipoFormado() {
 		initialize();
 	}
 
@@ -36,7 +36,7 @@ public class Principal {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 596, 741);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
