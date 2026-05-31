@@ -35,6 +35,10 @@ public class Persona {
 		return calificacion<=5 && calificacion>=1;
 	}
 
+	public String toString() {
+		return _nombre + " " + _apellido + " [" + _rol + " - " + _calificacion + "]";
+	}
+	
 	public String getNombre() {
 		return _nombre;
 	}

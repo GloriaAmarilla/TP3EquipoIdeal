@@ -13,6 +13,10 @@ public class PersonalLaboral {
 	}
 	
 	public void cargarPersona(Persona persona) {
+		if (persona == null)
+            throw new IllegalArgumentException("La persona no puede ser nula");
+        if (_personas.contains(persona))
+            throw new IllegalArgumentException("La persona ya fue cargada");
 		_personas.add(persona);
 		
 		HashSet <Persona> listaVacia = new HashSet<Persona>();
@@ -20,18 +24,27 @@ public class PersonalLaboral {
 	}
 	
 	public void cargarIncompatibles(Persona persona, Persona pers_incompatible) {
-		HashSet<Persona> pers_Incompatibles_de_sugeto_1 = _incompatibles.get(persona);
-		HashSet<Persona> pers_Incompatibles_de_sugeto_2 = _incompatibles.get(pers_incompatible);
+		if (persona.equals(pers_incompatible))
+            throw new IllegalArgumentException("Una persona no puede ser incompatible consigo misma");
+        if (_incompatibles.get(persona).contains(pers_incompatible))
+            throw new IllegalArgumentException("Esta incompatibilidad ya fue existe");
+        HashSet<Persona> pers_Incompatibles_de_sujeto_1 = _incompatibles.get(persona);
+		HashSet<Persona> pers_Incompatibles_de_sujeto_2 = _incompatibles.get(pers_incompatible);
 
-		pers_Incompatibles_de_sugeto_1.add(pers_incompatible);
-		pers_Incompatibles_de_sugeto_2.add(persona);
+		pers_Incompatibles_de_sujeto_1.add(pers_incompatible);
+		pers_Incompatibles_de_sujeto_2.add(persona);
 	}
 	
+	public boolean estaPersonaCargada(Persona persona) {
+		return _personas.contains(persona);
+	}
 	public HashSet<Persona> getPersonas(){
 		return _personas;
 	}
 	
 	public HashSet<Persona> getIncompatibles(Persona persona) {
+		if (!_personas.contains(persona))
+            throw new IllegalArgumentException("La persona no está cargada");
 		return _incompatibles.get(persona);
 	}
 		
