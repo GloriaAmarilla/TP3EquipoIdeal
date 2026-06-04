@@ -13,36 +13,48 @@ public class PersonalLaboralTest {
 
 	@Test
 	public void cargarPersonaTest() {
-		
-		Persona persona = new Persona("Cristian","Bier",4,"Lider");
+
+		Persona persona = new Persona("Cristian", "Bier", 4, "Lider");
 		PersonalLaboral personal = new PersonalLaboral();
 		personal.cargarPersona(persona);
 
-		assertEquals(1,personal.getPersonas().size());
+		assertEquals(1, personal.getPersonas().size());
 	}
-	
+
 	@Test
 	public void peronsalIncompatibleTest() {
-		
-		Persona persona = new Persona("Cristian","Bier",4,"Lider");
-		Persona persona2 = new Persona("Pepito","guayaba",2,"Programador");
-		
+
+		Persona persona = new Persona("Cristian", "Bier", 4, "Lider");
+		Persona persona2 = new Persona("Pepito", "guayaba", 2, "Programador");
+
 		PersonalLaboral personal = new PersonalLaboral();
 		personal.cargarPersona(persona);
 		personal.cargarPersona(persona2);
-		
-		
+
 		personal.cargarIncompatibles(persona, persona2);
 		HashSet<Persona> incompatibles = new HashSet<>();
-		incompatibles =  personal.getIncompatibles(persona);
+		incompatibles = personal.getIncompatibles(persona);
 		Persona personaIncompatible = incompatibles.iterator().next();
-		
-		assertEquals(persona2,personaIncompatible);
-		
-		incompatibles =  personal.getIncompatibles(persona2);
+
+		assertEquals(persona2, personaIncompatible);
+
+		incompatibles = personal.getIncompatibles(persona2);
 		personaIncompatible = incompatibles.iterator().next();
-		
-		assertEquals(persona,personaIncompatible);
+
+		assertEquals(persona, personaIncompatible);
 	}
 
+	@Test(expected = IllegalArgumentException.class)
+	public void incompatibilidadConsigoMismaTest() {
+		PersonalLaboral personal = new PersonalLaboral();
+		Persona persona = new Persona("Cristian", "Bier", 4, "Lider");
+		personal.cargarPersona(persona);
+		personal.cargarIncompatibles(persona, persona);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void cargarPersonaNulaTest() {
+		PersonalLaboral personal = new PersonalLaboral();
+		personal.cargarPersona(null);
+	}
 }

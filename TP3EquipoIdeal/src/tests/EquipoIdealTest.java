@@ -13,12 +13,49 @@ public class EquipoIdealTest {
 
 	private PersonalLaboral personal;
 
-    @Before
-    public void setUp() {
-        personal = new PersonalLaboral();
-    }
-    @Test(expected = IllegalArgumentException.class)
-    public void testConstructorListenerNulo() {
-        new EquipoIdeal(1, 1, 1, 1, personal, null);
-    }
+	@Before
+	public void setUp() {
+		personal = new PersonalLaboral();
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testConstructorListenerNulo() {
+		new EquipoIdeal(1, 1, 1, 1, personal, null);
+	}
+	
+	@Test
+	public void testRespetaIncompatibilidades() {
+		Persona lider1 = new Persona("Juan", "lider", 5, "LIDER");
+		Persona tester1 = new Persona("Juan", "test1", 5, "TESTER");
+		Persona tester2 = new Persona("Juan", "test2", 3, "TESTER");
+
+		personal.cargarPersona(lider1);
+		personal.cargarPersona(tester1);
+		personal.cargarPersona(tester2);
+		personal.cargarIncompatibles(lider1, tester1);
+
+		EquipoIdeal.ResultadoListener listener = (equipo, evaluaciones, tiempo) -> {
+		};
+		EquipoIdeal equipo = new EquipoIdeal(1, 0, 0, 1, personal, listener);
+		equipo.run();
+		assertEquals(8, equipo.getMejorCalificacion());
+	}
+
+	@Test
+	public void testCalificacionTotalCorrecta() {
+		Persona lider = new Persona("Juan", "lider", 5, "LIDER");
+		Persona arquitecto = new Persona("Juan", "arquitecto", 4, "ARQUITECTO");
+		Persona tester = new Persona("Juan", "tester", 3, "TESTER");
+
+		personal.cargarPersona(lider);
+		personal.cargarPersona(arquitecto);
+		personal.cargarPersona(tester);
+
+		EquipoIdeal.ResultadoListener listener = (equipo, evaluaciones, tiempo) -> {
+		};
+		EquipoIdeal equipo = new EquipoIdeal(1, 1, 0, 1, personal, listener);
+		equipo.run();
+
+		assertEquals(12, equipo.getMejorCalificacion());
+	}
 }
