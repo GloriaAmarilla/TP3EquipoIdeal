@@ -14,7 +14,7 @@ public class PersonalLaboralTest {
 	@Test
 	public void cargarPersonaTest() {
 
-		Persona persona = new Persona("Cristian", "Bier", 4, "Lider");
+		Persona persona = new Persona("Cristian", "Lopez", 4, "Lider");
 		PersonalLaboral personal = new PersonalLaboral();
 		personal.cargarPersona(persona);
 

@@ -19,12 +19,21 @@ public class EquipoIdealTest {
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void testConstructorListenerNulo() {
+	public void listenerNuloTest() {
 		new EquipoIdeal(1, 1, 1, 1, personal, null);
 	}
 	
+	@Test (expected = IllegalArgumentException.class)
+	public void personalNuloTest() {
+		PersonalLaboral personalNulo = null;
+		EquipoIdeal.ResultadoListener listener = (equipo, evaluaciones, tiempo) -> {
+		};
+		@SuppressWarnings("unused")
+		EquipoIdeal equipo = new EquipoIdeal(1,2,3,4,personalNulo,listener);
+	}
+	
 	@Test
-	public void testRespetaIncompatibilidades() {
+	public void respetaIncompatibilidadesTest() {
 		Persona lider1 = new Persona("Juan", "lider", 5, "LIDER");
 		Persona tester1 = new Persona("Juan", "test1", 5, "TESTER");
 		Persona tester2 = new Persona("Juan", "test2", 3, "TESTER");
@@ -42,7 +51,7 @@ public class EquipoIdealTest {
 	}
 
 	@Test
-	public void testCalificacionTotalCorrecta() {
+	public void calificacionTotalCorrectaTest() {
 		Persona lider = new Persona("Juan", "lider", 5, "LIDER");
 		Persona arquitecto = new Persona("Juan", "arquitecto", 4, "ARQUITECTO");
 		Persona tester = new Persona("Juan", "tester", 3, "TESTER");
